@@ -1,6 +1,19 @@
 require("dotenv").config();
 const { Client, GatewayIntentBits } = require("discord.js");
 const axios = require("axios");
+const express = require("express"); // Add Express
+const app = express(); // Create Express app
+const PORT = process.env.PORT || 3000; // Default port 3000
+
+// Set up Express server
+app.get('/', (req, res) => {
+  res.send('Hello World');
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Web server running on port ${PORT}`);
+});
 
 const client = new Client({
     intents: [
