@@ -22,7 +22,6 @@ async function chatWithAI(userMessage) {
         );
 
         let botReply = "";
-        // Check if the response contains an array or an object with generated_text
         if (Array.isArray(response.data)) {
             botReply = response.data[0]?.generated_text || "I didn't understand that.";
         } else if (response.data.generated_text) {
@@ -31,7 +30,7 @@ async function chatWithAI(userMessage) {
             botReply = "I didn't understand that.";
         }
 
-        // If the reply contains '</think>', use only the text after it.
+        // If the reply contains '</think>', use only the text after it
         if (botReply.includes('</think>')) {
             botReply = botReply.split('</think>').pop();
         }
@@ -50,6 +49,38 @@ client.once("ready", () => {
     console.log("Bot is online!");
 });
 
+// Add this helper function to split messages
+function splitMessage(text, maxLength = 2000) {
+    const chunks = [];
+    let currentChunk = "";
+
+    // Split by newlines first to keep formatting intact where possible
+    const lines = text.split("\n");
+
+    for (const line of lines) {
+        if (currentChunk.length + line.length + 1 > maxLength) {
+            chunks.push(currentChunk);
+            currentChunk = line;
+        } else {
+            currentChunk += (currentChunk ? "\n" : "") + line;
+        }
+    }
+
+    if (currentChunk) {
+        chunks.push(currentChunk);
+    }
+
+    // If any chunk is still too long, split it by characters
+    return chunks.flatMap(chunk => {
+        if (chunk.length <= maxLength) return [chunk];
+        const result = [];
+        for (let i = 0; i < chunk.length; i += maxLength) {
+            result.push(chunk.slice(i, i + maxLength));
+        }
+        return result;
+    });
+}
+
 client.on("messageCreate", async (message) => {
     // Ignore bot messages and messages that don't mention the bot
     if (message.author.bot || !message.mentions.has(client.user.id)) return;
@@ -61,15 +92,15 @@ client.on("messageCreate", async (message) => {
     if (!userMessage) return;
 
     try {
-        // Start an interval to keep showing typing indicator
+        // Start typing indicator
         const typingInterval = setInterval(() => {
             message.channel.sendTyping();
-        }, 5000); // Discord's typing indicator lasts ~10s, so we refresh every 5s
+        }, 5000);
 
         // Get AI response
         const reply = await chatWithAI(userMessage);
 
-        // Clear the typing interval
+        // Clear typing indicator
         clearInterval(typingInterval);
 
         // Send the response
