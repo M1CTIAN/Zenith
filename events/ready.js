@@ -40,7 +40,7 @@ module.exports = {
                     Routes.applicationGuildCommands(client.user.id, TEST_GUILD_ID),
                     { body: commands }
                 );
-                console.log(`Slash commands registered to guild ${TEST_GUILD_ID}!`);
+                // Removed the log message that displayed the guild ID
             } else {
                 // Register global commands
                 await rest.put(
