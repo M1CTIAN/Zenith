@@ -12,6 +12,7 @@ module.exports = {
             .setDescription('I\'m Zenith, your AI assistant. Here are my commands:')
             .addFields(
                 { name: '/ask', value: 'Ask me a question' },
+                { name: '/translate', value: 'Translate text between languages' },
                 { name: '/image', value: 'Generate images from text descriptions' }
             )
             .setFooter({ text: 'Powered by AI' });
