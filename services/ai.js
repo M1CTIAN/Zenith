@@ -51,6 +51,7 @@ module.exports = {
         }
     },
 
+    
     async translateText(text, sourceLang, targetLang) {
         try {
             // Auto-detect source language if not provided
