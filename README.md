@@ -1,12 +1,13 @@
-# Zenith Discord Bot
+# ✨ Zenith Discord Bot
 
-Zenith is an AI-powered Discord bot that provides intelligent responses to user questions and can generate images from text descriptions.
+Zenith is an AI-powered Discord bot that provides intelligent responses to user questions, translates text between languages, and can generate images from text descriptions.
 
 ![Zenith Bot Logo](https://example.com/zenith-logo.png)
 
 ## 🌟 Features
 
 - 🧠 **AI Conversations**: Ask Zenith questions and receive thoughtful responses powered by advanced language models
+- 🌐 **Translation**: Translate text between multiple languages with natural-sounding results
 - 🎨 **Image Generation**: Create images from text descriptions using stable diffusion models
 - 🔧 **Slash Commands**: Easy-to-use Discord slash commands
 - 📐 **Math Support**: Properly formatted LaTeX rendering for mathematical expressions
@@ -34,7 +35,7 @@ Zenith is an AI-powered Discord bot that provides intelligent responses to user 
    npm install
    ```
 
-3. **Create a .env file** in the root directory with:
+3. **Create a [`.env`](.env) file** in the root directory with:
 
    ```env
    DISCORD_TOKEN=your_discord_bot_token
@@ -70,11 +71,20 @@ Zenith is an AI-powered Discord bot that provides intelligent responses to user 
 
 Zenith uses slash commands for all interactions:
 
-| Command           | Description                                       |
-| ----------------- | ------------------------------------------------- |
-| `/ask <question>` | Ask Zenith a question                             |
-| `/image <prompt>` | Generate an image based on the text description   |
-| `/help`           | Display help information about available commands |
+| Command                               | Description                                       |
+| ------------------------------------- | ------------------------------------------------- |
+| `/ask <question>`                     | Ask Zenith a question                             |
+| `/translate <text> <target> [source]` | Translate text between languages                  |
+| `/image <prompt>`                     | Generate an image based on the text description   |
+| `/help`                               | Display help information about available commands |
+
+### Translation Example
+
+The translation feature supports 12 languages including English, Spanish, French, German, Chinese, Japanese, and more. The source language can be auto-detected if not specified.
+
+```
+/translate text:Hello, how are you? target:Spanish
+```
 
 ## 📁 Project Structure
 
@@ -84,11 +94,12 @@ Zenith uses slash commands for all interactions:
     - ask.js
     - help.js
     - image.js
+    - translate.js
   /events        # Discord event handlers
     - interactionCreate.js
     - ready.js
   /services      # External services
-    - ai.js      # AI text generation
+    - ai.js      # AI text generation, image generation, translation
     - express.js # Web server
   /utils         # Helper functions
     - helpers.js # Message splitting, formatting
@@ -118,11 +129,12 @@ Zenith uses slash commands for all interactions:
 
 ## ❓ Troubleshooting
 
-| Issue                      | Solution                                             |
-| -------------------------- | ---------------------------------------------------- |
-| 🚫 **Command not found**   | Make sure you've properly registered slash commands  |
-| 🤖 **AI not responding**   | Check your Hugging Face API key and endpoint         |
-| ⏱️ **Long response times** | The AI model may be loading, especially on first use |
+| Issue                      | Solution                                                   |
+| -------------------------- | ---------------------------------------------------------- |
+| 🚫 **Command not found**   | Make sure you've properly registered slash commands        |
+| 🤖 **AI not responding**   | Check your Hugging Face API key and endpoint               |
+| ⏱️ **Long response times** | The AI model may be loading, especially on first use       |
+| 🌐 **Translation issues**  | Try specifying both source and target languages explicitly |
 
 ## 👏 Credits
 
@@ -136,5 +148,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ---
 
 <div align="center">
+  <b>Made with ❤️ by Your Name</b><br>
   <i>Star ⭐ this repository if you found it useful!</i>
 </div>
