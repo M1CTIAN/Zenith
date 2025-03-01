@@ -50,7 +50,6 @@ module.exports = {
             throw error;
         }
     },
-    
 
     
     async translateText(text, sourceLang, targetLang) {
