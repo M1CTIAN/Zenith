@@ -2,7 +2,7 @@
 
 Zenith is an AI-powered Discord bot that provides intelligent responses to user questions, translates text between languages, and can generate images from text descriptions.
 
-![Zenith Bot Logo](https://example.com/zenith-logo.png)
+![Zenith Bot Logo](https://cdn.discordapp.com/attachments/1337794530493071481/1345651768679333889/DALLE_2025-03-01_18.57.14_-_A_creative_and_mature_logo_for_a_Discord_bot_named_Zenith_featuring_an_abstract_futuristic_design_inspired_by_the_concept_of_a_peak_or_summit._Inc.jpg?ex=67c5535e&is=67c401de&hm=3ebde091d4f8816a032e10571835698b5aac4612b4dae9a610fe2e5164208110&)
 
 ## 🌟 Features
 
@@ -25,7 +25,7 @@ Zenith is an AI-powered Discord bot that provides intelligent responses to user 
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/zenith-discord-bot.git
+   git clone https://github.com/M1CTIAN/zenith-discord-bot.git
    cd zenith-discord-bot
    ```
 
@@ -148,6 +148,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ---
 
 <div align="center">
-  <b>Made with ❤️ by Your Name</b><br>
   <i>Star ⭐ this repository if you found it useful!</i>
 </div>
