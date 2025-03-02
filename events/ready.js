@@ -20,35 +20,28 @@ module.exports = {
         
         const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
         const TEST_GUILD_ID = process.env.TEST_GUILD_ID;
+        const REGISTER_GLOBAL = process.env.REGISTER_GLOBAL === 'true'; // New environment variable
         
         try {
-            console.log('Registering slash commands...');
+            console.log('Starting slash command registration...');
             
-            if (TEST_GUILD_ID) {
-                // Clear and register guild commands
-                await rest.put(
-                    Routes.applicationGuildCommands(client.user.id, TEST_GUILD_ID),
-                    { body: [] }
-                );
-                
-                await rest.put(
-                    Routes.applicationCommands(client.user.id),
-                    { body: [] }
-                );
-                
-                await rest.put(
-                    Routes.applicationGuildCommands(client.user.id, TEST_GUILD_ID),
-                    { body: commands }
-                );
-                // Removed the log message that displayed the guild ID
-            } else {
-                // Register global commands
+            // Register commands globally if flag is set
+            if (REGISTER_GLOBAL) {
                 await rest.put(
                     Routes.applicationCommands(client.user.id),
                     { body: commands }
                 );
-                console.log('Slash commands registered globally!');
+                console.log('Slash commands registered globally for all servers!');
             }
+            // Otherwise register to test guild only
+            else if (TEST_GUILD_ID) {
+                await rest.put(
+                    Routes.applicationGuildCommands(client.user.id, TEST_GUILD_ID),
+                    { body: commands }
+                );
+                console.log('Slash commands registered for development server only.');
+            }
+            
         } catch (error) {
             console.error('Error registering commands:', error);
         }
