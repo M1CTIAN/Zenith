@@ -148,6 +148,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ---
 
 <div align="center">
-  <b>Made with ❤️ by Your Name</b><br>
   <i>Star ⭐ this repository if you found it useful!</i>
 </div>
