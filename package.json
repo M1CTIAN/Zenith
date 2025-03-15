@@ -11,10 +11,11 @@
   "type": "commonjs",
   "description": "",
   "dependencies": {
+    "@iamtraction/google-translate": "^2.0.1",
     "axios": "^1.7.9",
     "discord.js": "^14.18.0",
     "dotenv": "^16.4.7",
-    "openai": "^4.83.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "openai": "^4.83.0"
   }
 }
