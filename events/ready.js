@@ -25,30 +25,21 @@ module.exports = {
             console.log('Registering slash commands...');
             
             if (TEST_GUILD_ID) {
-                // Clear and register guild commands
-                await rest.put(
-                    Routes.applicationGuildCommands(client.user.id, TEST_GUILD_ID),
-                    { body: [] }
-                );
-                
-                await rest.put(
-                    Routes.applicationCommands(client.user.id),
-                    { body: [] }
-                );
-                
+                // Register to test guild (faster updates during development)
+                console.log('Registering guild commands to test server...');
                 await rest.put(
                     Routes.applicationGuildCommands(client.user.id, TEST_GUILD_ID),
                     { body: commands }
                 );
-                // Removed the log message that displayed the guild ID
-            } else {
-                // Register global commands
-                await rest.put(
-                    Routes.applicationCommands(client.user.id),
-                    { body: commands }
-                );
-                console.log('Slash commands registered globally!');
             }
+            
+            // Always register globally as well
+            console.log('Registering global commands (may take up to an hour to update)...');
+            await rest.put(
+                Routes.applicationCommands(client.user.id),
+                { body: commands }
+            );
+            console.log('Slash commands registered globally!');
         } catch (error) {
             console.error('Error registering commands:', error);
         }
